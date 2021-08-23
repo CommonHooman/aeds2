@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+<<<<<<< HEAD
+=======
+// #include <locale.h>
+>>>>>>> novamente, tp1
 
 bool isPalindromo(char str[], int index){
 
