@@ -59,55 +59,55 @@ class leituraHtml{
                 case 'u':
                     u++;
                     break;
-                case 'Ã¡':
+                case 'á':
                     a_ag++;
                     break;
-                case 'Ã©':
+                case 'é':
                     e_ag++;
                     break;
-                case 'Ã­':
+                case 'í':
                     i_ag++;
                     break;
-                case 'Ã³':
+                case 'ó':
                     o_ag++;
                     break;
-                case 'Ãº':
+                case 'ú':
                     u_ag++;
                     break;
-                case 'Ã ':
+                case 'à':
                     a_gra++;
                     break;
-                case 'Ã¨':
+                case 'è':
                     e_gra++;
                     break;
-                case 'Ã¬':
+                case 'ì':
                     i_gra++;
                     break;
-                case 'Ã²':
+                case 'ò':
                     o_gra++;
                     break;
-                case 'Ã¹':
+                case 'ù':
                     u_gra++;
                     break;
-                case 'Ã£':
+                case 'ã':
                     a_til++;
                     break;
-                case 'Ãµ':
+                case 'õ':
                     o_til++;
                     break;
-                case 'Ã¢':
+                case 'â':
                     a_circ++;
                     break;
-                case 'Ãª':
+                case 'ê':
                     e_circ++;
                     break;
-                case 'Ã®':
+                case 'î':
                     i_circ++;
                     break;
-                case 'Ã´':
+                case 'ô':
                     o_circ++;
                     break;
-                case 'Ã»':
+                case 'û':
                     u_circ++;
                     break;
                 case '<':
@@ -127,7 +127,7 @@ class leituraHtml{
             }
         }
 
-        return "a("+a+") e("+e+") i("+i+") o("+o+") u("+u+") Ã¡("+a_ag+") Ã©("+e_ag+") Ã­("+i_ag+") Ã³("+o_ag+") Ãº("+u_ag+") Ã ("+a_gra+") Ã¨("+e_gra+") Ã¬("+i_gra+") Ã²("+o_gra+") Ã¹("+u_gra+") Ã£("+a_til+") Ãµ("+o_til+") Ã¢("+a_circ+") Ãª("+e_circ+") Ã®("+i_circ+") Ã´("+o_circ+") Ã»("+u_circ+") consoante("+consoantes+") <br>("+br+") <table>("+table+")";
+        return "a("+a+") e("+e+") i("+i+") o("+o+") u("+u+") á("+a_ag+") é("+e_ag+") í­("+i_ag+") ó("+o_ag+") ú("+u_ag+") à("+a_gra+") è("+e_gra+") ì("+i_gra+") ò("+o_gra+") ù("+u_gra+") ã("+a_til+") õ("+o_til+") â("+a_circ+") ê("+e_circ+") î("+i_circ+") ô("+o_circ+") û("+u_circ+") consoante("+consoantes+") <br>("+br+") <table>("+table+")";
     }
 
     //Checa se o input deve ser terminado
@@ -136,7 +136,6 @@ class leituraHtml{
     }
 
    public static void main(String[] args) {
-        MyIO.setCharset("UTF-8");
         String[] entrada = new String[2000];
         int num_linha = 0;
         String html;
@@ -146,9 +145,9 @@ class leituraHtml{
         }while(isFim(entrada[num_linha++]) == false);
         num_linha--;
 
-        for(int i = 1; i < num_linha; i+=2){
+        for(int i = 1; i < num_linha; i += 2){
             html = getHtml(entrada[i]);
-            MyIO.println(readHtml(html) + " " + entrada[i-1]);
+            System.out.println(readHtml(html) + " " + entrada[i-1]);
         }
    }
 }

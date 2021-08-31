@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <locale.h>
+#include <locale.h>
 
 int isPalindromo(char str[]){
 
-    for (int i = 0, j = strlen(str)-2; i < j; i++, j--){
+    for (int i = 0, j = strlen(str)-2; i <= j; i++, j--){
        if(str[i] != str[j]){
            return 0;
         }
@@ -19,7 +19,7 @@ int isFim(char s[]){
 }
 
 int main(){
-    //setlocale(LC_ALL, "en_US.UTF-8");
+    setlocale(LC_ALL, "en_US.UTF-8");
     char entrada[1000][1000];
     int num_linha = 0;
 
