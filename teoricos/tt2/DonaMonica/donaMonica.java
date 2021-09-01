@@ -2,9 +2,9 @@ public class donaMonica {
     
     public static void main (String[] args){
         String linha = MyIO.readLine();
-        int mae, filho_1, filho_2, i = 0;
+        int mae, filho_1, filho_2, filho_3, velho, i = 0;
 
-        //Le todas as linhas e da o resultado de uma
+        //Le todas as linhas e da o resultado de uma por vez
         while(linha.length() > 1) {
             //Descobre a idade da mae
             mae = (int)(linha.charAt(i) - 48)* 10 ;
@@ -26,7 +26,16 @@ public class donaMonica {
                 filho_2 = (int)linha.charAt(5) - 48;
             }
 
-            MyIO.println(mae - (filho_1 + filho_2));
+            filho_3 = mae - (filho_1 + filho_2);
+
+            if(filho_1 > filho_2 && filho_1 > filho_3)
+                velho = filho_1;
+            else if(filho_2 > filho_1 && filho_2 > filho_3)
+                velho = filho_2;
+            else
+                velho = filho_3;
+
+            MyIO.println(velho);
 
             //Le a proxima e atualiza o indexador da mesma
             linha = MyIO.readLine();
