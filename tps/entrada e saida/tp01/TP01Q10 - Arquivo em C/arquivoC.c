@@ -1,25 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void readFile(FILE *fp){
-
-    while(!(feof(fp))){
-        char num[1000];
-        fread(num, sizeof(char), 1000, fp);
-        readFile(fp);
-        printf("%s\n", num);
-    }
-}
-
 int main(){
-    FILE *fp = fopen("pub.in", "rb");
-    // int num_linha;
-    // fread(num_linha, sizeof(int), 1, fp);
+    FILE *fp = fopen("entrada.txt", "wb");
+    int num_linhas;
+    double num;
+    scanf("%i", &num_linhas);
 
-    // while(num_linha > 0);
+    if(fp != NULL){
+        for(int i = 0; i < num_linhas; i++){
+            scanf("%lf", &num);
+            fwrite(&num, sizeof(double), 1, fp);
+        }
+    }else{
+        printf("Error - File not found\n");
+    }
 
-    readFile(fp);
     fclose(fp);
+    fp = fopen("entrada.txt", "rb");
 
+    for(int i = 1; i <= num_linhas; i++){
+        fseek(fp, -i*8, SEEK_END);
+        fread(&num, sizeof(double), 1, fp);
+        printf("%g\n", num);
+    }
+
+    fclose(fp);
+    
     return 0;
 }
