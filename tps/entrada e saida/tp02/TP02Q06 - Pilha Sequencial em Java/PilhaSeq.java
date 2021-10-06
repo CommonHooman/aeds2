@@ -58,7 +58,7 @@ public class PilhaSeq {
         PilhaSeq pilha = new PilhaSeq();
         String linha = MyIO.readLine();
         Serie obj;
-        int qnt_operacoes, index;
+        int qnt_operacoes;
 
         while(isFim(linha) == false){
             obj = new Serie();
