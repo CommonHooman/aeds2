@@ -2,7 +2,56 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
-public class ListaSeq {
+public class SelectionSort {
+
+    public static void selectionSort(ListaSeq lista){
+
+        for(int i = 0; i < lista.getSize(); i++){
+            int menor = i;
+            for(int j = i+1; j < lista.getSize(); j++){
+                if(lista.array[menor].getCountry().trim().compareToIgnoreCase(lista.array[j].getCountry().trim()) > 0){
+                    menor = j;
+                }else if(lista.array[menor].getCountry().trim().compareToIgnoreCase(lista.array[j].getCountry().trim()) == 0){
+                    if(lista.array[menor].getName().trim().compareToIgnoreCase(lista.array[j].getName().trim()) > 0)
+                        menor = j;
+                }
+            }
+            swap(menor, i, lista.array);
+        }
+    }
+
+    public static void swap(int a, int b, Serie array[]){
+        Serie tmp = array[a];
+        array[a] = array[b];
+        array[b] = tmp;
+    }
+
+    //Checa se o input deve ser terminado
+    public static boolean isFim(String s){
+        return(s.length() == 3 && s.charAt(0) == 'F' && s.charAt(1) == 'I' && s.charAt(2) == 'M');
+    }
+
+    public static void main(String[] args){
+        ListaSeq lista = new ListaSeq();
+        String linha = MyIO.readLine();
+        Serie obj;
+
+        //Preenche a lista com todas as series vindas antes do 1o "FIM"
+        while(isFim(linha) == false){
+            obj = new Serie();
+            obj.readClass(linha);
+            lista.inserirFim(obj);
+
+            linha = MyIO.readLine();
+        }
+        //lista.print();
+        selectionSort(lista);
+
+        lista.print();
+    }
+}
+
+class ListaSeq {
     public Serie array[];
     private int size;
 
@@ -107,70 +156,9 @@ public class ListaSeq {
         return(s.length() == 3 && s.charAt(0) == 'F' && s.charAt(1) == 'I' && s.charAt(2) == 'M');
     }
 
-    /* MAIN */
-    public static void main (String[] args){
-        ListaSeq lista = new ListaSeq();
-        String linha = MyIO.readLine();
-        Serie obj;
-        int qnt_operacoes, index;
-
-        //Preenche a lista com todas as series vindas antes do 1o "FIM"
-        while(isFim(linha) == false){
-            obj = new Serie();
-            obj.readClass(linha);
-            lista.inserirFim(obj);
-
-            linha = MyIO.readLine();
-        }
-
-        //1a linha apos o "FIM" = quantidade de operacoes que serao realizadas
-        qnt_operacoes = Integer.parseInt(MyIO.readLine());
-
-        //Realiza todas as operacoes presentes nas seguintes qnt_operacoes linhas
-        for(int i = 0; i < qnt_operacoes; i++) {
-            linha = MyIO.readLine();
-
-            if(linha.charAt(0) == 'I'){     // INSERCAO
-                obj = new Serie();
-                
-                if(linha.charAt(1) == 'I'){                     // II -> inserir no inicio
-                    obj.readClass(linha.replace("II ", ""));
-
-                    lista.inserirInicio(obj);
-                }
-                else if(linha.charAt(1) == 'F'){                // IF -> inserir no fim
-                    obj.readClass(linha.replace("IF ", ""));
-
-                    lista.inserirFim(obj);
-                }
-                else{                                           // I* -> inserir na posicao especificada
-                    linha = linha.replace("I* ", "");
-                    index = Integer.parseInt(linha.substring(0, 2));
-    
-                    obj.readClass(linha.substring(3, linha.length()));
-    
-                    lista.inserir(obj, index);
-                }
-                
-            }else{                          // REMOCAO
-                if(linha.charAt(1) == 'I'){                     // RI -> remover do inicio
-                    System.out.println("(R) " + lista.removerInicio().getName());
-                }
-                else if(linha.charAt(1) == 'F'){                // RF -> remover do fim
-                    System.out.println("(R) " + lista.removerFim().getName());
-                }
-                else{                                           // R* -> remover da posicao especificada
-                    linha = linha.replace("R* ", "");
-                    index = Integer.parseInt(linha);
-
-                    System.out.println("(R) " + lista.remover(index).getName());
-                }
-            }
-        }
-
-        //Printa as Celulas da lista a partir de first ate last
-        for(int i = 0; i < lista.getSize(); i++){
-            lista.array[i].printClass();
+    public void print(){
+        for(int i = 0; i < size; i++){
+            array[i].printClass();
         }
     }
 }

@@ -26,23 +26,19 @@ public class PesquisaBin {
         if (dir >= esq) {
             int meio = esq + (dir - esq) / 2;
   
-            // If the element is present at the
-            // meiodle itself
+            //Elemento foi encontrado
             if (array.get(meio).equals(s))
                 return meio;
   
-            // If element is smaller than meio, then
-            // it can only be present in left subarray
+            //Elemento esta na metade esquerda do array
             if (array.get(meio).compareTo(s) > 0)
-                return pesquisaBinaria(s, array, esq, meio -1);
+                return pesquisaBinaria(s, array, esq, meio - 1);
   
-            // Else the element can only be present
-            // in right subarray
+            //Elemento esta na metade direita do array
             return pesquisaBinaria(s, array, meio + 1, dir);
         }
-  
-        // We reach here when element is not present
-        // in array
+
+        //Elemento nao se encontra no array
         return -1;
     }
 
